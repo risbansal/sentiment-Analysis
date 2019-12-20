@@ -11,9 +11,6 @@ import torch.nn as nn
 from torch import optim
 from string import punctuation
 
-# Task 1: Load the data
-# For this task you will load the data, create a vocabulary and encode the reviews with integers
-
 
 
 def read_file(path):
@@ -168,9 +165,9 @@ def get_emb(embedding, word):
 
 
 #Paths
-train_path = "project/project/movie_reviews/movie_reviews/train/"
-test_path = "project/project/movie_reviews/movie_reviews/test/"
-word2vec_path = "project/project/wiki-news-300d-1M.vec"
+train_path = "movie_reviews/movie_reviews/train/"
+test_path = "movie_reviews/movie_reviews/test/"
+word2vec_path = "wiki-news-300d-1M.vec"
 
 #Training Data
 train_data, train_labels = read_file(train_path)
@@ -366,23 +363,7 @@ class RNNSentiment(nn.Module):
 
 def rnn_exec(vocab_size,embedding_dim,hidden_dim,output_size,train_loader,test_loader, n_layers,drop_prob):
     
-              precision    recall  f1-score   support
 
-       B-LOC       0.91      0.88      0.89      2075
-      B-MISC       0.91      0.79      0.85       934
-       B-ORG       0.89      0.59      0.71      1211
-       B-PER       0.84      0.81      0.82      1754
-       I-LOC       0.84      0.71      0.77       276
-      I-MISC       0.82      0.61      0.70       323
-       I-ORG       0.88      0.62      0.73       814
-       I-PER       0.67      0.97      0.79      1309
-           O       0.99      1.00      0.99     41304
-
-   micro avg       0.96      0.96      0.96     50000
-   macro avg       0.86      0.78      0.81     50000
-weighted avg       0.96      0.96      0.96     50000
-
-Accuracy Score: 0.95956
 
     #Instantiate the model 
     model = RNNSentiment(vocab_size,embedding_dim,hidden_dim,output_size,n_layers,drop_prob)
